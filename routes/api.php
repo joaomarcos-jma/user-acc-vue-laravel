@@ -19,11 +19,9 @@ Route::prefix('v1')->group(function() {
         Route::post('login', 'App\Http\Controllers\Auth\AuthController@login');
         Route::post('register', 'App\Http\Controllers\Auth\UserController@register');
     });
-    Route::middleware('api:auth')->group(function() {
-        // Route::prefix('client')->group(function () {
-        //     Route::get('list');
-        //     Route::post('register');
-        //     Route::put('update');
-        // });
-    });;
+    Route::middleware('auth:api')->group(function() {
+        Route::prefix('client')->group(function () {
+            Route::post('store', 'App\Http\Controllers\ClientController@store');
+        });
+    });
 });
