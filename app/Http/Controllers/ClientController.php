@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\AbstractController;
+use App\Services\ClientService;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
 
-class ClientController extends Controller
+class ClientController extends AbstractController
 {
+     /**
+     * ClientController constructor.
+     * @param ClientService $service
+     */
+    public function __construct(ClientService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,16 +47,15 @@ class ClientController extends Controller
      */
     public function store(StoreClientRequest $request)
     {
-        //
+        return parent::save($request);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return JsonResponse|mixed
+     * @throws Exception
      */
-    public function show(Client $client)
+    public function show($client)
     {
         //
     }
@@ -74,12 +84,11 @@ class ClientController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return JsonResponse|mixed
+     * @throws Exception
      */
-    public function destroy(Client $client)
+    public function destroy($client)
     {
         //
     }
