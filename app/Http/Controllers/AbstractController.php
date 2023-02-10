@@ -49,8 +49,8 @@ abstract class AbstractController extends Controller
      */
     public function save($request)
     {
-        $this->authorize('store', $this->model);
-        return $this->service->create($request);
+        // $this->authorize('store', $this->model);
+        return $this->service->save($request);
     }
 
     /**
